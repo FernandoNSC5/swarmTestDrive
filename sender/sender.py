@@ -4,7 +4,7 @@ class sender():
 
     def __init__(self):
         # Localhost
-        self.ip     = "poc"
+        self.ip     = "172.18.0.2"
         self.port   = 3000
         self.buffer = 128
         self.run()

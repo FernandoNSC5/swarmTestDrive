@@ -1,7 +1,17 @@
-from fastapi import FastAPI
+import socket
 
-api = FastAPI()
+port = 3000
+buffer = 128
+host = ""
+times = 10
 
-@api.get("/")
-async def root():
-    print("Received something")
+soc = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+soc.bind((host, port))
+print("[SERVER] Initialized")
+soc.listen(times)
+while True:
+    conn, addr = soc.accept()
+    rcData = conn.recv(buffer).decode()
+    print(f"[SERVER] Received: ", rcData)
+
+soc.close()
